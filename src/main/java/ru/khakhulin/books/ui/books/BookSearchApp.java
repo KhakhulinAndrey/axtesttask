@@ -1,4 +1,4 @@
-package ru.khakhulin.books.UI;
+package ru.khakhulin.books.ui.books;
 
 import ru.khakhulin.books.dao.BookDAO;
 

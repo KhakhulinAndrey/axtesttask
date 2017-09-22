@@ -8,7 +8,7 @@ import java.time.LocalDate;
 /**
  * Created by 1 on 20.09.2017.
  */
-public class Main {
+public class TestDAO {
     public static void main(String[] args) {
         /*BookDAO bookDAO = new BookDAO();
         System.out.println(bookDAO.getAll().toString());
@@ -24,11 +24,12 @@ public class Main {
         AuthorDAO authorDAO = new AuthorDAO();
         System.out.println(authorDAO.get(100000L));
 
-       // authorDAO.delete(100003L);
+        //authorDAO.delete(100003L);
         Author author = authorDAO.get(100000L);
-        author.setName("NEW");
+        author.setName("NEW1");
         authorDAO.save(author);
         System.out.println(authorDAO.getAll().toString());
+        System.out.println(authorDAO.getBySurname("Go").toString());
 
 
     }

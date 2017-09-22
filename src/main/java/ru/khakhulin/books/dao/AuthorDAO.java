@@ -21,11 +21,7 @@ public class AuthorDAO {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String patronymic = resultSet.getString("patronymic");
-                String surname = resultSet.getString("surname");
-                Date birthday = resultSet.getDate("birthday");
-                author = new Author(id, name, patronymic, surname, birthday.toLocalDate());
+                author = convertRowToAuthor(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,14 +35,24 @@ public class AuthorDAO {
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM authors ORDER BY birthday");)
             {
                 while (resultSet.next()){
-                    Long id = resultSet.getLong("id");
-                    String name = resultSet.getString("name");
-                    String patronymic = resultSet.getString("patronymic");
-                    String surname = resultSet.getString("surname");
-                    Date birthday = resultSet.getDate("birthday");
-                    authors.add(new Author(id, name, patronymic, surname, birthday.toLocalDate()));
+                    authors.add(convertRowToAuthor(resultSet));
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return authors;
+        }
 
+        public List<Author> getBySurname(String surname){
+            surname += "%";
+            String getBySurnameSQL = "SELECT * FROM authors WHERE surname LIKE ?";
+            List<Author> authors = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(getBySurnameSQL);) {
+                statement.setString(1, surname);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    authors.add(convertRowToAuthor(resultSet));
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -102,5 +108,17 @@ public class AuthorDAO {
 
     }
 
+
+    private Author convertRowToAuthor(ResultSet resultSet) throws SQLException {
+
+        Long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
+        String patronymic = resultSet.getString("patronymic");
+        String surname = resultSet.getString("surname");
+        Date birthday = resultSet.getDate("birthday");
+        Author author = new Author(id, name, patronymic, surname, birthday.toLocalDate());
+
+        return author;
+    }
 
 }

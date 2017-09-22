@@ -21,14 +21,8 @@ public class BookDAO {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                Long auth_id = resultSet.getLong("auth_id");
-                String name = resultSet.getString("name");
-                String isbn = resultSet.getString("isbn");
-                String subject = resultSet.getString("subject");
-                book = new Book(id, auth_id, name, isbn, subject);
+                book = convertRowToBook(resultSet);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,14 +36,8 @@ public class BookDAO {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM books");)
         {
             while (resultSet.next()){
-                Long id = resultSet.getLong("id");
-                Long auth_id = resultSet.getLong("auth_id");
-                String name = resultSet.getString("name");
-                String isbn = resultSet.getString("isbn");
-                String subject = resultSet.getString("subject");
-                books.add(new Book(id, auth_id, name, isbn, subject));
+                books.add(convertRowToBook(resultSet));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,7 +50,7 @@ public class BookDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
 
-            System.out.println("Record is deleted!");
+            System.out.println("Book is deleted!");
 
         } catch (SQLException e) {
 
@@ -83,7 +71,7 @@ public class BookDAO {
                 preparedStatement.setString(4, book.getSubject());
                 preparedStatement.executeUpdate();
 
-                System.out.println("Record is inserted!");
+                System.out.println("Book is inserted!");
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -98,12 +86,23 @@ public class BookDAO {
                 preparedStatement.setLong(5, book.getId());
                 preparedStatement.executeUpdate();
 
-                System.out.println("Record is updated!");
+                System.out.println("Book is updated!");
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private Book convertRowToBook(ResultSet resultSet) throws SQLException {
+
+        Long id = resultSet.getLong("id");
+        Long auth_id = resultSet.getLong("auth_id");
+        String name = resultSet.getString("name");
+        String isbn = resultSet.getString("isbn");
+        String subject = resultSet.getString("subject");
+        Book book = new Book(id, auth_id, name, isbn, subject);
+
+        return book;
     }
 }
