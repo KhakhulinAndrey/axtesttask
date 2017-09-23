@@ -17,11 +17,20 @@ public class AuthorTableModel extends AbstractTableModel {
     private static final int BIRTHDAY = 4;
 
     private String[] columnNames = { "ID", "Имя", "Отчетсво",
-            "Фамилия", "Birthday" };
+            "Фамилия", "Дата рождения" };
     private List<Author> authors;
 
     public AuthorTableModel(List<Author> authors) {
         this.authors = authors;
+    }
+
+    public Author getAuthor(int row){
+        return authors.get(row);
+    }
+
+    public void updateData(List<Author> authors) {
+        this.authors = authors;
+        fireTableDataChanged();
     }
 
     @Override

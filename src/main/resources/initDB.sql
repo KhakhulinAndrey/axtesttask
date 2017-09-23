@@ -29,7 +29,9 @@ DELETE FROM books;
 INSERT INTO authors (name, patronymic, surname, birthday) VALUES
   ('Alex', 'Serg','Pushkin', '1799-06-06'),
   ('Nickolay', 'Vasil','Gogol', '1809-04-01'),
-  ('Ivab', 'Vasil','Ivanov', '1929-01-11');
+  ('Ivab', 'Vasil','Ivanov', '1929-01-11'),
+  ('Iv2ab', 'Vasil','Ivanov', '1929-01-11'),
+  ('ss', 'ddl','Iffov', '1929-01-11');
 
 INSERT INTO books (name, isbn, subject, auth_id) VALUES
   ('Ruslan and Ludmila', '321-TT', 'Poem', 100000),

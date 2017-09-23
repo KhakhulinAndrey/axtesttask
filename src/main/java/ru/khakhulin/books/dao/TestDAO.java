@@ -28,8 +28,8 @@ public class TestDAO {
         Author author = authorDAO.get(100000L);
         author.setName("NEW1");
         authorDAO.save(author);
-        System.out.println(authorDAO.getAll().toString());
-        System.out.println(authorDAO.getBySurname("Go").toString());
+        //System.out.println(authorDAO.getAll().toString());
+        System.out.println(authorDAO.getBySubject("Pov").toString());
 
 
     }
