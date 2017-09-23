@@ -10,7 +10,8 @@ import java.time.LocalDate;
  */
 public class TestDAO {
     public static void main(String[] args) {
-        /*BookDAO bookDAO = new BookDAO();
+        BookDAO bookDAO = new BookDAO();
+        /*
         System.out.println(bookDAO.getAll().toString());
 
        // bookDAO.delete(Long.valueOf(100004L));
@@ -31,6 +32,7 @@ public class TestDAO {
         //System.out.println(authorDAO.getAll().toString());
         System.out.println(authorDAO.getBySubject("Pov").toString());
 
+        System.out.println(bookDAO.getAllAuthId());
 
     }
 }

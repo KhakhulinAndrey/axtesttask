@@ -44,6 +44,22 @@ public class BookDAO {
         return books;
     }
 
+    public List<Book> getAllByAuthId(Long authId){
+        List<Book> books = new ArrayList<>();
+        String selectSQL = "SELECT * FROM books WHERE auth_id=?";
+        try(PreparedStatement statement = connection.prepareStatement(selectSQL);)
+        {
+            statement.setLong(1, authId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                books.add(convertRowToBook(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
     public void delete(Long id){
         String deleteSQL = "DELETE FROM books WHERE id=?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);) {
@@ -92,6 +108,20 @@ public class BookDAO {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Long> getAllAuthId(){
+        List<Long> list = new ArrayList<>();
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM authors");)
+        {
+            while (resultSet.next()){
+                list.add(resultSet.getLong("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     private Book convertRowToBook(ResultSet resultSet) throws SQLException {

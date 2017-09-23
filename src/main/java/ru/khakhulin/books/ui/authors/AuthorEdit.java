@@ -34,7 +34,7 @@ public class AuthorEdit extends JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        setTitle("Авторы");
+        setTitle("Автор");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
@@ -121,8 +121,6 @@ public class AuthorEdit extends JFrame {
         });
         add(btnOk);
         add(btnCancel);
-
-
     }
 
 }

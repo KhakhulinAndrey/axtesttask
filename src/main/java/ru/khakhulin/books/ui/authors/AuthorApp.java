@@ -2,6 +2,7 @@ package ru.khakhulin.books.ui.authors;
 
 import ru.khakhulin.books.dao.AuthorDAO;
 import ru.khakhulin.books.model.Author;
+import ru.khakhulin.books.ui.books.BookApp;
 
 import javax.swing.*;
 
@@ -19,7 +20,7 @@ public class AuthorApp extends JFrame {
     private AuthorApp authorApp;
     private JTextField lastNameTextField, subjectTextField;
     private JButton btnSearch, btnSearch2;
-    private JButton allBooks, btnAdd, btnEdit, btnRem;
+    private JButton allBooks, athBooks, btnAdd, btnEdit, btnRem;
     private JScrollPane scrollPane;
     private JTable table;
     protected AuthorTableModel model;
@@ -54,9 +55,6 @@ public class AuthorApp extends JFrame {
         setDefaultLookAndFeelDecorated(true);
         setSize(600, 550);
         setLayout(new FlowLayout());
-
-
-
 
         JLabel lblEnterLastName = new JLabel("Фамилия");
         add(lblEnterLastName);
@@ -131,7 +129,29 @@ public class AuthorApp extends JFrame {
         scrollPane.setViewportView(table);
 
         allBooks = new JButton("Все книги");
+        allBooks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BookApp bookApp = new BookApp(null);
+                bookApp.setVisible(true) ;
+            }
+        });
         add(allBooks);
+
+        athBooks = new JButton("Книги автора");
+        athBooks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = table.getSelectedRow(); //номер выделенной строки
+                if (row == -1){
+                    JOptionPane.showMessageDialog(AuthorApp.this, "Выберите автора", "Подсказка",
+                            JOptionPane.INFORMATION_MESSAGE);
+                };
+                BookApp bookApp = new BookApp(model.getAuthor(row).getId());
+                bookApp.setVisible(true) ;
+            }
+        });
+        add(athBooks);
 
         btnAdd = new JButton("Добавить");
         btnAdd.addActionListener(new ActionListener() {
