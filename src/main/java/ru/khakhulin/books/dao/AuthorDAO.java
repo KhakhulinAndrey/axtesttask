@@ -34,7 +34,7 @@ public class AuthorDAO {
     public List<Author> getAll() {
         List<Author> authors = new ArrayList<>();
         try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM authors");) {
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM authors ORDER BY surname");) {
             while (resultSet.next()) {
                 authors.add(convertRowToAuthor(resultSet));
             }

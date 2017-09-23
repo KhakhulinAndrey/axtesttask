@@ -46,7 +46,9 @@ public class BookApp extends JFrame {
 
         if (auth_id == null)
             model = new BookTableModel(bookDAO.getAll());
-        else model = new BookTableModel(bookDAO.getAllByAuthId(auth_id));
+        else
+            model = new BookTableModel(bookDAO.getAllByAuthId(auth_id));
+
         table = new JTable();
         table.setModel(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //можно выделять только 1 строку

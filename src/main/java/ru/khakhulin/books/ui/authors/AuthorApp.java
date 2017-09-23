@@ -72,17 +72,14 @@ public class AuthorApp extends JFrame {
                     List<Author> authors = null;
 
                     if (surname != null && surname.trim().length() > 0) {
-                        authors = authorDAO.getBySurname(surname);
+                        model.updateData(authorDAO.getBySurname(surname));
                     } else {
-                        authors = authorDAO.getAll();
+                        model.updateData(authorDAO.getAll());
                     }
-
-                    AbstractTableModel model = new AuthorTableModel(authors);
-                    table.setModel(model);
-
                 } catch (Exception exc) {
                     JOptionPane.showMessageDialog(AuthorApp.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
 
             }
         });
@@ -103,12 +100,10 @@ public class AuthorApp extends JFrame {
                     List<Author> authors = null;
 
                     if (subject != null && subject.trim().length() > 0) {
-                        authors = authorDAO.getBySubject(subject);
+                        model.updateData(authorDAO.getBySubject(subject));
                     } else {
-                        authors = authorDAO.getAll();
+                        model.updateData(authorDAO.getAll());
                     }
-                    AbstractTableModel model = new AuthorTableModel(authors);
-                    table.setModel(model);
 
                 } catch (Exception exc) {
                     JOptionPane.showMessageDialog(AuthorApp.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE);

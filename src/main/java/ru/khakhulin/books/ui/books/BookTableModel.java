@@ -3,7 +3,9 @@ package ru.khakhulin.books.ui.books;
 import ru.khakhulin.books.model.Book;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookTableModel extends AbstractTableModel {
 

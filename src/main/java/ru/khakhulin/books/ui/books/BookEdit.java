@@ -55,8 +55,10 @@ public class BookEdit extends JFrame {
             nameTF.setText(book.getName());
             isbnTF.setText(book.getIsbn());
             subjectTF.setText(book.getSubject());
-            authCB.setSelectedItem(book.getAuth_id().toString());
+            authCB.setSelectedItem(book.getAuth_id());
         }
+
+
 
         add(lblName);
         add(nameTF);

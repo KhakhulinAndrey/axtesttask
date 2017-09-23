@@ -61,7 +61,7 @@ public class AuthorEdit extends JFrame {
             e.printStackTrace();
         }
         birthdayTF = new JFormattedTextField(mask);
-        birthdayTF.setColumns(10);
+        birthdayTF.setColumns(6);
         if (author != null) {
             nameTF.setText(author.getName());
             patronymicTF.setText(author.getPatronymic());

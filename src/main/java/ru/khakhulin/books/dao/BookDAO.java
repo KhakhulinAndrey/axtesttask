@@ -33,7 +33,7 @@ public class BookDAO {
     public List<Book> getAll(){
         List<Book> books = new ArrayList<>();
         try(Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM books");)
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM books ORDER BY auth_id");)
         {
             while (resultSet.next()){
                 books.add(convertRowToBook(resultSet));
