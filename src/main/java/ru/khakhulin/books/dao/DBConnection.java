@@ -9,9 +9,9 @@ import java.sql.SQLException;
  * Created by 1 on 20.09.2017.
  */
 public class DBConnection {
-    static String dbURL = "jdbc:postgresql://localhost:5432/books";
-    static String username = "user";
-    static String password = "password";
+    static String dbURL = "jdbc:hsqldb:file:C:/hsql/1/books";
+    static String username = "SA";
+    static String password = "";
 
     private static Connection connection;
 
