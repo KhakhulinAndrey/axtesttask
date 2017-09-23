@@ -1,9 +1,10 @@
 package ru.khakhulin.books.dao;
 
-import javax.sql.DataSource;
+import org.hsqldb.jdbc.JDBCDriver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by 1 on 20.09.2017.
@@ -19,11 +20,11 @@ public class DBConnection {
 
         if (connection == null) {
             try {
-                Connection conn = DriverManager.getConnection(dbURL, username, password);
-                if (conn != null) {
+                connection = DriverManager.getConnection(dbURL, username, password);
+                if (connection != null) {
                     System.out.println("Connected");
                 }
-                return conn;
+                return connection;
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 return null;
