@@ -70,8 +70,9 @@ public class BookApp extends JFrame {
                 int row = table.getSelectedRow(); //номер выделенной строки
                 if (row == -1) {
                     JOptionPane.showMessageDialog(BookApp.this, "Выберите книгу", "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    BookEdit bookEdit = new BookEdit(model.getBook(row), bookApp);
                 }
-                BookEdit authorEdit = new BookEdit(model.getBook(row), bookApp);
             }
         });
 
@@ -83,11 +84,11 @@ public class BookApp extends JFrame {
                 if (row == -1) {
                     JOptionPane.showMessageDialog(BookApp.this, "Выделите книгу", "Подсказка",
                             JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    Book book = model.getBook(row);
+                    bookDAO.delete(book.getId());
+                    model.updateData(bookDAO.getAll()); //обновляем таблицу
                 }
-                Book author = model.getBook(row);
-
-                bookDAO.delete(author.getId());
-                model.updateData(bookDAO.getAll()); //обновляем таблицу
             }
         });
 

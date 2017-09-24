@@ -39,7 +39,7 @@ public class BookEdit extends JFrame {
         setVisible(true);
 
         JLabel lblName = new JLabel("Книга");
-        JLabel lblAuth = new JLabel("Автор");
+        JLabel lblAuth = new JLabel("Автор                  ");
         JLabel lblIsbn = new JLabel("ISBN");
         JLabel lblSub = new JLabel("Тематика");
 

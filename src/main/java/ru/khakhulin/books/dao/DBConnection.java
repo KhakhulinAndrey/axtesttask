@@ -1,16 +1,15 @@
 package ru.khakhulin.books.dao;
 
-import org.hsqldb.jdbc.JDBCDriver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+
 
 /**
  * Created by 1 on 20.09.2017.
  */
 public class DBConnection {
-    static String dbURL = "jdbc:hsqldb:file:C:/hsql/1/books";
+    static String dbURL = "jdbc:hsqldb:file:/db/books";
     static String username = "SA";
     static String password = "";
 

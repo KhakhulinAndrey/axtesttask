@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
+
 /**
  * Created by Admin on 22.09.2017.
  */
@@ -42,7 +43,7 @@ public class AuthorApp extends JFrame {
         });
     }
 
-    public AuthorApp(){
+    public AuthorApp() {
         try {
             authorDAO = new AuthorDAO();
         } catch (Exception exc) {
@@ -128,7 +129,7 @@ public class AuthorApp extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BookApp bookApp = new BookApp(null);
-                bookApp.setVisible(true) ;
+                bookApp.setVisible(true);
             }
         });
         add(allBooks);
@@ -138,12 +139,13 @@ public class AuthorApp extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = table.getSelectedRow(); //номер выделенной строки
-                if (row == -1){
+                if (row == -1) {
                     JOptionPane.showMessageDialog(AuthorApp.this, "Выберите автора", "Подсказка",
                             JOptionPane.INFORMATION_MESSAGE);
-                };
-                BookApp bookApp = new BookApp(model.getAuthor(row).getId());
-                bookApp.setVisible(true) ;
+                } else {
+                    BookApp bookApp = new BookApp(model.getAuthor(row).getId());
+                    bookApp.setVisible(true);
+                }
             }
         });
         add(athBooks);
@@ -161,10 +163,11 @@ public class AuthorApp extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = table.getSelectedRow(); //номер выделенной строки
-                if (row == -1){
+                if (row == -1) {
                     JOptionPane.showMessageDialog(AuthorApp.this, "Выделите автора", "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    AuthorEdit authorEdit = new AuthorEdit(model.getAuthor(row), authorApp);
                 }
-                AuthorEdit authorEdit = new AuthorEdit(model.getAuthor(row), authorApp);
             }
         });
 
@@ -173,20 +176,20 @@ public class AuthorApp extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = table.getSelectedRow(); //номер выделенной строки
-                if (row == -1){
+                if (row == -1) {
                     JOptionPane.showMessageDialog(AuthorApp.this, "Выделите автора", "Подсказка",
                             JOptionPane.INFORMATION_MESSAGE);
-                }
-                Author author = model.getAuthor(row);
-                try {
-                    authorDAO.delete(author.getId());
-                }
-                catch (SQLException sqlE){
+                } else {
+                    Author author = model.getAuthor(row);
+                    try {
+                        authorDAO.delete(author.getId());
+                    } catch (SQLException sqlE) {
 
-                    JOptionPane.showMessageDialog(AuthorApp.this, "Запрещено удалять автора с книгами", "Подсказка",
-                            JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(AuthorApp.this, "Запрещено удалять автора с книгами", "Подсказка",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    model.updateData(authorDAO.getAll()); //обновляем таблицу
                 }
-                model.updateData(authorDAO.getAll()); //обновляем таблицу
             }
         });
         add(btnAdd);
