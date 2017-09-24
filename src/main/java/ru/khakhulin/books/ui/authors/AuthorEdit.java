@@ -89,8 +89,9 @@ public class AuthorEdit extends JFrame {
                 try {
                     birthday = LocalDate.parse(birthdayTF.getText());
                 } catch (DateTimeException e2) {
-                    JOptionPane.showMessageDialog(AuthorEdit.this, "Неверный формат даты", "Подсказка",
+                    JOptionPane.showMessageDialog(AuthorEdit.this, "Неверный формат даты ГГГГ-ММ-ДД", "Подсказка",
                             JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }
 
                 if (author == null)//добавление нового автора

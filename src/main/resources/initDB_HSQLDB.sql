@@ -27,14 +27,15 @@ DELETE FROM authors;
 DELETE FROM books;
 
 INSERT INTO authors (name, patronymic, surname, birthday) VALUES
-  ('Alex', 'Serg','Pushkin', '1799-06-06'),
-  ('Nickolay', 'Vasil','Gogol', '1809-04-01'),
-  ('Ivab', 'Vasil','Ivanov', '1929-01-11'),
-  ('Iv2ab', 'Vasil','Ivanov', '1929-01-11'),
-  ('ss', 'ddl','Iffov', '1929-01-11');
+  ('Александр', 'Сергеевич','Пушкин', '1799-06-06'),
+  ('Николай', 'Васильевич','Гоголь', '1809-04-01'),
+  ('Михаил', 'Юрьевич','Лермонтов', '1814-10-05'),
+  ('Test', 'Test','Test', '1929-01-11'),
+  ('test2', 'test2','test2', '1929-01-11');
 
 INSERT INTO books (name, isbn, subject, auth_id) VALUES
-  ('Ruslan and Ludmila', '321-TT', 'Poem', 100000),
-  ('Dubrovsky', '311-TG', 'Povest', 100000),
-  ('Mertvie dushi', '417-GL', 'Poem', 100001),
-  ('Revizor', '301-GG', 'Comedy', 100001);
+  ('Руслан и Людмила', '321-TT', 'Поэма', 100000),
+  ('Дубровский', '311-TG', 'Повесть', 100000),
+  ('Мертвые души', '417-GL', 'Поэма', 100001),
+  ('Ревизор', '301-GG', 'Комедия', 100001),
+  ('Мцыри', '3012-GG', 'Поэма', 100002);
